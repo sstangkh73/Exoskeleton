@@ -1,0 +1,143 @@
+{
+  "design_id": "exo_product_architecture_v0_1",
+  "date": "2026-07-03",
+  "status": "engineering_concept_for_simulation_and_bench_prototype",
+  "not_for": [
+    "human_wearable_testing_without_safety_review",
+    "manufacturing",
+    "medical_or_occupational_deployment"
+  ],
+  "target": {
+    "payload_kg": 5.0,
+    "felt_payload_kg": 2.5,
+    "assist_strategy": "force_amplification_with_human_only_effort_estimate",
+    "first_build_order": [
+      "elbow_only_bench_rig",
+      "dummy_arm_testing",
+      "low_payload_wearable_trial_after_safety_review",
+      "shoulder_module",
+      "integrated_single_arm"
+    ]
+  },
+  "mechanical": {
+    "configuration": "right_arm_lateral_frame",
+    "upper_arm_link_m": 0.31,
+    "upper_arm_adjustment_m": [0.26, 0.36],
+    "forearm_link_m": 0.34,
+    "forearm_adjustment_m": [0.28, 0.38],
+    "exo_lateral_offset_m": 0.055,
+    "cuff_width_nominal_m": 0.08,
+    "padding_thickness_m": [0.008, 0.015],
+    "mounts": {
+      "torso": "backpack_plate_with_chest_and_shoulder_straps",
+      "upper_arm": "two_wide_cuffs_at_0p11m_and_0p24m_from_shoulder",
+      "forearm": "two_wide_cuffs_at_0p10m_and_0p25m_from_elbow"
+    }
+  },
+  "joints": {
+    "shoulder_flexion_extension": {
+      "active_range_deg": [-20, 110],
+      "mechanical_hard_stop_deg": [-35, 125],
+      "sim_joint": "shoulder_flexion",
+      "axis": "0 -1 0"
+    },
+    "elbow_flexion_extension": {
+      "active_range_deg": [0, 135],
+      "mechanical_hard_stop_deg": [0, 145],
+      "sim_joint": "elbow_flexion",
+      "axis": "0 -1 0"
+    }
+  },
+  "actuation": {
+    "shoulder": {
+      "motor_location": "torso_backpack_side_plate",
+      "transmission": "timing_belt_or_cable_capstan_to_shoulder_pulley",
+      "transmission_ratio_initial": 50,
+      "joint_peak_design_nm": 35.0,
+      "joint_continuous_target_nm": 15.0,
+      "early_human_test_software_limit_nm": 20.0,
+      "sim_stress_limit_nm": 80.0,
+      "driver_voltage_v": 24.0,
+      "driver_peak_current_a": 12.0,
+      "driver_continuous_current_a": 5.0,
+      "encoder": "absolute_or_incremental_joint_encoder_12_to_14_bit_minimum"
+    },
+    "elbow": {
+      "motor_location": "distal_upper_arm_near_elbow_not_forearm_tip",
+      "transmission": "coaxial_belt_or_compact_gear_stage",
+      "transmission_ratio_initial": 40,
+      "joint_peak_design_nm": 15.0,
+      "joint_continuous_target_nm": 5.0,
+      "early_human_test_software_limit_nm": 8.0,
+      "sim_stress_limit_nm": 60.0,
+      "driver_voltage_v": 24.0,
+      "driver_peak_current_a": 8.0,
+      "driver_continuous_current_a": 3.0,
+      "encoder": "absolute_or_incremental_joint_encoder_12_to_14_bit_minimum"
+    }
+  },
+  "power": {
+    "battery_nominal_voltage_v": 24.0,
+    "battery_capacity_ah": 6.0,
+    "battery_energy_wh": 144.0,
+    "battery_bms_peak_current_a": 20.0,
+    "main_fuse_a": 15.0,
+    "branch_fuses_a": {
+      "shoulder_driver": 10.0,
+      "elbow_driver": 7.5,
+      "logic_dc_dc": 2.0
+    },
+    "dc_dc": {
+      "logic_5v_current_a": 3.0,
+      "logic_3v3_current_a": 1.0
+    },
+    "emergency_stop": "normally_closed_series_power_or_driver_enable_loop"
+  },
+  "wiring": {
+    "main_battery_bus": "AWG16_or_equivalent",
+    "motor_phase_or_motor_power_leads": "AWG18_short_runs_with_strain_relief",
+    "logic_power": "AWG22",
+    "sensor_signal": "AWG24_shielded_or_twisted_pair",
+    "communication": "CAN_or_RS485_twisted_pair",
+    "routing_rules": [
+      "route power and sensor wires separately where possible",
+      "add strain relief at every moving joint",
+      "leave service loops near shoulder and elbow rotation",
+      "fuse the battery as close to the pack as practical",
+      "do not route wires across elbow crease without flexible loop"
+    ]
+  },
+  "sensing": {
+    "required_for_force_amplification": [
+      "human_only_effort_estimator",
+      "shoulder_joint_encoder",
+      "elbow_joint_encoder",
+      "motor_current_measurement_for_monitoring_not_primary_human_effort",
+      "load_cell_or_series_elastic_deflection_sensor_at_cuff_or_transmission"
+    ],
+    "must_avoid": [
+      "using_combined_human_plus_motor_torque_as_direct_force_amp_input",
+      "using_motor_current_alone_as_human_effort"
+    ]
+  },
+  "safety": {
+    "minimum_before_human": [
+      "mechanical_hard_stops",
+      "software_torque_limits",
+      "torque_rate_limits",
+      "emergency_stop",
+      "watchdog_for_sensor_disagreement",
+      "dummy_arm_bench_test",
+      "no_payload_and_low_payload_tests"
+    ],
+    "control_loop_target_hz": [200, 500],
+    "first_payload_limit_kg": [0.5, 1.0]
+  },
+  "artifacts": {
+    "blueprint_svg": "outputs/exo_product_blueprint_v0_1.svg",
+    "blueprint_png": "outputs/exo_product_blueprint_v0_1.png",
+    "companion_doc": "docs/product_engineering_blueprint_v0_1.th.md",
+    "mechanical_design_doc": "docs/mechanical_design_v0_1.th.md",
+    "mujoco_design_model": "models/arm_exoskeleton_design_v0_1.xml"
+  }
+}

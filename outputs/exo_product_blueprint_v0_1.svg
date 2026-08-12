@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+  <defs>
+    <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1c3f6b" stroke-width="1"/>
+    </pattern>
+    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#smallGrid)"/>
+      <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#2d5f94" stroke-width="1.4"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#8ee8ff"/>
+    </marker>
+    <marker id="dimArrow" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,4.5 L9,0 L9,9 z" fill="#ffffff"/>
+    </marker>
+    <style>
+      .bg { fill: #081b33; }
+      .panel { fill: rgba(7, 25, 48, 0.68); stroke: #7fdfff; stroke-width: 2; }
+      .title { fill: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight: 700; letter-spacing: 1px; }
+      .subtitle { fill: #b8eeff; font-family: Arial, Helvetica, sans-serif; font-size: 17px; }
+      .label { fill: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
+      .small { fill: #d8f8ff; font-family: Arial, Helvetica, sans-serif; font-size: 14px; }
+      .tiny { fill: #d8f8ff; font-family: Arial, Helvetica, sans-serif; font-size: 12px; }
+      .warn { fill: #ffd37a; font-family: Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; }
+      .line { stroke: #8ee8ff; stroke-width: 3; fill: none; }
+      .thin { stroke: #8ee8ff; stroke-width: 1.5; fill: none; }
+      .dim { stroke: #ffffff; stroke-width: 1.5; fill: none; marker-start: url(#dimArrow); marker-end: url(#dimArrow); }
+      .wire24 { stroke: #ff5a67; stroke-width: 5; fill: none; marker-end: url(#arrow); }
+      .wireLogic { stroke: #62ffb4; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .wireSensor { stroke: #ffdc6e; stroke-width: 3; fill: none; stroke-dasharray: 8 6; marker-end: url(#arrow); }
+      .metal { fill: #d7dbe2; stroke: #ffffff; stroke-width: 2; }
+      .exo { fill: #f0c847; stroke: #fff4a3; stroke-width: 2; }
+      .body { fill: #4ec7aa; stroke: #bbfff0; stroke-width: 2; }
+      .fore { fill: #3e86ff; stroke: #c8ddff; stroke-width: 2; }
+      .strap { fill: #11151e; stroke: #bdefff; stroke-width: 1.5; }
+      .payload { fill: #d6473d; stroke: #ffd4d0; stroke-width: 2; }
+      .module { fill: #10294a; stroke: #8ee8ff; stroke-width: 2; }
+      .critical { fill: #3a1c22; stroke: #ff7a86; stroke-width: 2; }
+      .safe { fill: #123326; stroke: #62ffb4; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="1100"/>
+  <rect width="1600" height="1100" fill="url(#grid)" opacity="0.55"/>
+
+  <text class="title" x="50" y="58">ARM EXOSKELETON PRODUCT BLUEPRINT v0.1</text>
+  <text class="subtitle" x="52" y="88">Simulation-first engineering concept: lifting assist, 5 kg payload feels like about 2.5 kg with human-only force sensing</text>
+  <text class="warn" x="1160" y="58">CONCEPT ONLY - NOT HUMAN TEST READY</text>
+
+  <rect class="panel" x="35" y="115" width="980" height="620" rx="8"/>
+  <text class="label" x="60" y="150">A. MECHANICAL LAYOUT - RIGHT ARM SIDE VIEW</text>
+
+  <line class="thin" x1="160" y1="650" x2="940" y2="650"/>
+  <rect class="metal" x="105" y="330" width="100" height="290"/>
+  <rect class="metal" x="70" y="290" width="42" height="350"/>
+  <text class="small" x="58" y="282">torso harness / backpack plate</text>
+
+  <circle class="metal" cx="115" cy="515" r="42"/>
+  <text class="small" x="46" y="575">shoulder motor</text>
+  <text class="tiny" x="34" y="594">24 V, 12 A peak driver</text>
+
+  <line class="exo" x1="145" y1="505" x2="248" y2="410" stroke-width="8" fill="none"/>
+  <text class="small" x="145" y="488">belt / cable drive</text>
+
+  <circle class="line" cx="280" cy="390" r="21"/>
+  <text class="small" x="252" y="360">shoulder axis</text>
+
+  <line class="body" x1="280" y1="390" x2="520" y2="555" stroke-width="52" stroke-linecap="round"/>
+  <line class="exo" x1="305" y1="360" x2="545" y2="525" stroke-width="18" stroke-linecap="round"/>
+  <text class="small" x="350" y="340">upper arm link: 310 mm nominal</text>
+
+  <rect class="strap" x="355" y="380" width="60" height="102" transform="rotate(34 385 431)"/>
+  <rect class="strap" x="465" y="455" width="60" height="102" transform="rotate(34 495 506)"/>
+  <text class="tiny" x="470" y="432">upper cuffs</text>
+
+  <circle class="exo" cx="535" cy="560" r="50"/>
+  <circle class="metal" cx="510" cy="560" r="42"/>
+  <text class="small" x="470" y="625">elbow motor near distal upper arm</text>
+  <text class="tiny" x="490" y="646">24 V, 8 A peak driver</text>
+
+  <line class="fore" x1="535" y1="560" x2="730" y2="745" stroke-width="46" stroke-linecap="round"/>
+  <line class="exo" x1="565" y1="535" x2="760" y2="720" stroke-width="16" stroke-linecap="round"/>
+  <text class="small" x="640" y="535">forearm link: 340 mm nominal</text>
+
+  <rect class="strap" x="585" y="590" width="58" height="88" transform="rotate(43 614 634)"/>
+  <rect class="strap" x="685" y="685" width="58" height="84" transform="rotate(43 714 727)"/>
+  <text class="tiny" x="675" y="672">forearm cuffs</text>
+
+  <rect class="payload" x="735" y="725" width="115" height="115" transform="rotate(43 792 782)"/>
+  <text class="small" x="785" y="860">payload 5 kg</text>
+
+  <line class="dim" x1="285" y1="300" x2="535" y2="472"/>
+  <text class="tiny" x="410" y="300">upper adjustment 260-360 mm</text>
+  <line class="dim" x1="585" y1="515" x2="800" y2="720"/>
+  <text class="tiny" x="705" y="510">forearm adjustment 280-380 mm</text>
+
+  <path class="thin" d="M280 390 A95 95 0 0 1 368 300"/>
+  <text class="tiny" x="362" y="303">shoulder active -20 to 110 deg</text>
+  <path class="thin" d="M535 560 A85 85 0 0 1 620 555"/>
+  <text class="tiny" x="612" y="555">elbow active 0 to 135 deg</text>
+
+  <rect class="panel" x="1040" y="115" width="520" height="620" rx="8"/>
+  <text class="label" x="1065" y="150">B. POWER, CONTROL, AND WIRING</text>
+
+  <rect class="module" x="1080" y="185" width="180" height="72" rx="8"/>
+  <text class="small" x="1100" y="214">24 V Battery Pack</text>
+  <text class="tiny" x="1100" y="236">6 Ah, BMS 20 A, 144 Wh</text>
+
+  <rect class="critical" x="1310" y="185" width="190" height="72" rx="8"/>
+  <text class="small" x="1330" y="214">Main Fuse + E-Stop</text>
+  <text class="tiny" x="1330" y="236">15 A main fuse near battery</text>
+
+  <path class="wire24" d="M1260 221 C1282 221 1288 221 1310 221"/>
+  <text class="tiny" x="1255" y="205">AWG16 power bus</text>
+
+  <rect class="module" x="1120" y="315" width="185" height="85" rx="8"/>
+  <text class="small" x="1138" y="344">Shoulder Driver</text>
+  <text class="tiny" x="1138" y="366">24 V, 12 A peak</text>
+  <text class="tiny" x="1138" y="384">joint target 35 Nm peak</text>
+
+  <rect class="module" x="1350" y="315" width="170" height="85" rx="8"/>
+  <text class="small" x="1368" y="344">Elbow Driver</text>
+  <text class="tiny" x="1368" y="366">24 V, 8 A peak</text>
+  <text class="tiny" x="1368" y="384">joint target 15 Nm peak</text>
+
+  <path class="wire24" d="M1405 257 C1405 290 1212 285 1212 315"/>
+  <path class="wire24" d="M1405 257 C1405 292 1435 286 1435 315"/>
+
+  <rect class="safe" x="1185" y="475" width="250" height="95" rx="8"/>
+  <text class="small" x="1210" y="505">Controller MCU</text>
+  <text class="tiny" x="1210" y="527">200-500 Hz torque loop target</text>
+  <text class="tiny" x="1210" y="547">CAN/RS485 to drivers, AWG24 logic</text>
+
+  <path class="wireLogic" d="M1305 475 C1270 435 1235 435 1212 400"/>
+  <path class="wireLogic" d="M1360 475 C1395 435 1425 435 1435 400"/>
+
+  <rect class="module" x="1085" y="620" width="190" height="72" rx="8"/>
+  <text class="small" x="1105" y="648">Human-only Sensors</text>
+  <text class="tiny" x="1105" y="670">load cells / series elastic</text>
+
+  <rect class="critical" x="1330" y="620" width="190" height="72" rx="8"/>
+  <text class="small" x="1352" y="648">Forbidden Feedback</text>
+  <text class="tiny" x="1352" y="670">do not amplify motor torque</text>
+
+  <path class="wireSensor" d="M1180 620 C1190 590 1230 580 1268 570"/>
+  <path class="wireSensor" d="M1425 620 C1400 590 1370 580 1345 570"/>
+
+  <rect class="panel" x="35" y="765" width="760" height="280" rx="8"/>
+  <text class="label" x="60" y="800">C. JOINT AND ACTUATOR TARGETS</text>
+  <text class="small" x="65" y="838">Shoulder flexion/extension</text>
+  <text class="tiny" x="70" y="865">Range: -20 to 110 deg active, hard stop -35 to 125 deg</text>
+  <text class="tiny" x="70" y="888">Actuator: motor on torso, belt/cable to shoulder pulley, 50:1 transmission target</text>
+  <text class="tiny" x="70" y="911">Torque: 35 Nm peak design, 15 Nm continuous target, 20 Nm early human-test software cap</text>
+  <text class="small" x="65" y="955">Elbow flexion/extension</text>
+  <text class="tiny" x="70" y="982">Range: 0 to 135 deg active, hard stop 0 to 145 deg</text>
+  <text class="tiny" x="70" y="1005">Actuator: motor near distal upper arm, belt/gear at elbow, 40:1 transmission target</text>
+  <text class="tiny" x="70" y="1028">Torque: 15 Nm peak design, 5 Nm continuous target, 8 Nm early human-test software cap</text>
+
+  <rect class="panel" x="830" y="765" width="730" height="280" rx="8"/>
+  <text class="label" x="855" y="800">D. WIRE AND SAFETY ARCHITECTURE</text>
+  <text class="small" x="860" y="838">Power</text>
+  <text class="tiny" x="870" y="865">24 V main bus: AWG16, fused at battery, routed through emergency stop</text>
+  <text class="tiny" x="870" y="888">Motor leads: AWG18 short runs, strain relief at shoulder and elbow modules</text>
+  <text class="small" x="860" y="932">Signal</text>
+  <text class="tiny" x="870" y="959">Sensors/encoders: AWG24, shielded/twisted pair for load cells and differential comms</text>
+  <text class="tiny" x="870" y="982">Controller must estimate human-only effort and subtract/ignore motor-induced torque</text>
+  <text class="warn" x="870" y="1028">Critical rule: never feed combined human + motor torque directly into force amplification</text>
+
+  <text class="tiny" x="50" y="1080">Generated artifact: outputs/exo_product_blueprint_v0_1.svg | companion spec: docs/product_engineering_blueprint_v0_1.th.md | concept values require bench validation</text>
+</svg>
